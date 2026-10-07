@@ -25,3 +25,71 @@ A static parsing and rewriting service for executable programs, which only liste
 
 ## Quick Start
 
+Users may install the corresponding pedagger engine toolkit via pip:
+
+```python
+CMD> pip install PeDagger==1.0.0
+CMD> pip show pedagger
+Name: PeDagger
+Version: 1.0.0
+Summary:
+Home-page: http://pedagger.lyshark.com
+Author: lyshark
+Author-email: me@lyshark.com
+License: MIT Licence
+```
+
+Simply call the PEDagger library to achieve the ability to analyze specific PE files.
+
+```python
+from pedagger import *
+
+if __name__ == "__main__":
+    # Initialize PEDagger client connection
+    cli = PEDaggerClient(address="127.0.0.1", port=8947, api_key="45d3552b12b12cdf2c831344311cf81e")
+
+    # Create client session pool
+    resp = cli.session_create()
+
+    # Open two sessions simultaneously
+    s1 = cli.open_file("c://Win32_Debug.exe",session="session1")
+    s2 = cli.open_file("c://x32_Debug.dll",session="session2")
+
+    # View session list
+    print(cli.session_list())
+
+    # Call nt_head method for each session
+    res_nt1 = cli.nt_head(session="session1")
+    res_nt2 = cli.nt_head(session="session2")
+
+    # Print results
+    print(res_nt1)
+    print(res_nt2)
+
+    # Close sessions
+    cli.session_close(session_id="session1")
+    cli.session_close(session_id="session2")
+```
+
+Use PEdagger to perform static file disassembly tasks as shown below.
+
+```python
+from pedagger import *
+
+if __name__ == "__main__":
+    # Initialize PEDagger client connection
+    cli = PEDaggerClient(address="127.0.0.1", port=8947, api_key="45d3552b12b12cdf2c831344311cf81e")
+
+    # Create client session pool
+    resp = cli.session_create()
+
+    # Open two sessions simultaneously
+    s1 = cli.open_file("c://Win32_Debug.exe",session="session1")
+
+    res_disasm = cli.disassemble_at("foa", "0x8A0", size=100, session="session1")
+    print("Disassembly result:")
+    print(res_disasm)
+
+    # Close session
+    cli.session_close(session_id="session1")
+```
