@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+PeDagger/__init__.py
+PeDagger.egg-info/PKG-INFO
+PeDagger.egg-info/SOURCES.txt
+PeDagger.egg-info/dependency_links.txt
+PeDagger.egg-info/top_level.txt
