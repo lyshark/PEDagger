@@ -42,7 +42,7 @@ License: MIT Licence
 Simply call the PEDagger library to achieve the ability to analyze specific PE files.
 
 ```python
-from pedagger import *
+from PeDagger import *
 
 if __name__ == "__main__":
     # Initialize PEDagger client connection
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 Use PEdagger to perform static file disassembly tasks as shown below.
 
 ```python
-from pedagger import *
+from PeDagger import *
 
 if __name__ == "__main__":
     # Initialize PEDagger client connection
